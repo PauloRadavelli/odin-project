@@ -1,56 +1,58 @@
+const rock = document.querySelector("#rock");
+const paper = document.querySelector("#paper");
+const scissors = document.querySelector("#scissors");
+const userDisplay = document.querySelector("#user-score");
+const computerDisplay = document.querySelector("#computer-score")
+
+const options = ["rock","paper","scissors"];
 let computerScore = 0;
-let playerScore = 0;
+let userScore = 0;
+let userChoice;
 
 function getRandomInt(max) {
   return Math.floor(Math.random() * max);
 }
 
 function getComputerChoice(){
-    const randomAnswer = ['rock','paper','scissors']
-    return randomAnswer[getRandomInt(3)]
+    return options[getRandomInt(3)]
 }
 
-function playRound(playerSelection, computerSelection){
-    playerSelection = playerSelection.toLowerCase()
-    if(playerSelection == "rock" && computerSelection == "paper"){
-        computerScore++
-        return "You lose! Paper beats Rock"
+function onRockClick() {
+    userChoice = "rock";
+    let computerChoice = getComputerChoice();
+    if(computerChoice == "paper"){
+        computerScore++;
     }
-    if(playerSelection == "paper" && computerSelection == "scissors"){
-        computerScore++
-        return "You lose! Scissor beats Paper"
+    if(computerChoice == "scissors"){
+        userScore++;
     }
-    if(playerSelection == "scissors" && computerSelection == "rock"){
-        computerScore++
-        return "You lose! Paper beats scissors"
-    }
+    userDisplay.textContent = "Your score: "+userScore;
+    computerDisplay.textContent = "Computer score: "+computerScore
 
-    if(playerSelection == "rock" && computerSelection == "scissors"){
-        playerScore++
-        return "You win! Rock beats scissors"
-    }
-    if(playerSelection == "scissors" && computerSelection == "paper"){
-        playerScore++
-        return "You win! Scissor beats paper"
-    }
-    if(playerSelection == "paper" && computerSelection == "rock"){
-        playerScore++
-        return "You win! Paper beats rock"
-    }
-
-    if(playerSelection == computerSelection){
-        playerScore++
-        computerScore++
-        return "It's a Draw!"
-    }
 }
 
-function game(){
-    for(let i = 0 ; i <= 10 ; i++){
-        if(computerScore == 5 || playerScore == 5){
-            console.log(`Your score: ${playerScore} | Computer score: ${computerScore}`);
-            return;
-        }
-        console.log(playRound(prompt(), getComputerChoice()))
+function onPaperClick() {
+    userChoice = "paper";
+    let computerChoice = getComputerChoice();
+    if(computerChoice == "scissors"){
+        computerScore++;
     }
+    if(computerChoice == "rock"){
+        userScore++;
+    }
+    userDisplay.textContent = "Your score: "+userScore;
+    computerDisplay.textContent = "Computer score: "+computerScore
+}
+
+function onScissorsClick(){
+    userChoice = "scissors";
+    let computerChoice = getComputerChoice();
+    if(computerChoice == "rock"){
+        computerScore++
+    }
+    if(computerChoice == "paper"){
+        userScore++
+    }
+    userDisplay.textContent = "Your score: "+userScore;
+    computerDisplay.textContent = "Computer score: "+computerScore
 }
