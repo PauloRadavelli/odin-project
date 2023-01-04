@@ -1,4 +1,3 @@
-
 let computerScore = 0;
 let playerScore = 0;
 
@@ -7,7 +6,7 @@ function getRandomInt(max) {
 }
 
 function getComputerChoice(){
-    let randomAnswer = ['rock','paper','scissors']
+    const randomAnswer = ['rock','paper','scissors']
     return randomAnswer[getRandomInt(3)]
 }
 
@@ -55,4 +54,3 @@ function game(){
         console.log(playRound(prompt(), getComputerChoice()))
     }
 }
-
